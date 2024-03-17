@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>3. Los riesgos profesionales | UT 1. NOCIONES GENERALES SOBRE PREVENCIÓN DE RIESGOS LABORALES </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="José Andrés Sanz Ruiz" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8.1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"  type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet" type="text/css">
+<link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"  type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"  type="text/css">
+
+
+<style>
+  
+  .z-index {
+    z-index: 999;
+  }
+
+  .select-container {
+    display: inline-block;
+    position: relative;
+    z-index: 999;
+  }
+
+  .font-button {
+    padding: 8px 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 8px;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    z-index: 999;
+  }
+
+  .fontButtonContainer {
+     z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* establece el wrap para que los botones se distribuyan en varias líneas */
+    gap: 5px; /* ajusta el espacio entre los botones */
+    position: static; /* fija la barra de botones en la página: static para que aparezca en la parte superior, fixed para que quede flotando */
+    top: 40px; /* fija la barra de botones en la parte superior de la página */
+    left: 0; /* fija la barra de botones en el margen izquierdo */
+    right: 0; /* fija la barra de botones en el margen derecho */
+    margin: auto; /* centra la barra de botones horizontalmente */
+  }
+    
+  /* Estilo para el desplegable */
+  select {
+    padding: 8px 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 6px;
+    text-align: center;
+    text-decoration: none;
+    background-color: white;
+  }
+  
+  select option {
+  text-align: left;
+  }
+  
+</style>
+
+<script>
+
+// BatexeGo v3 Juan José de Haro 
+
+// Define los textos que se ven en pantalla. Reemplazar el texto entre comillas
+
+  // Textos del menú desplegable
+    const defaultText = 'Parámetros por defecto:'; //Descripción de la opción por defecto
+    const standardText = 'Fuente estándar'; // Fuente original del documento
+    
+    const dyslexicDesc = 'Dislexia:'; // Descripción de la opción OpenDyslexic  
+    const dyslexicText = 'OpenDyslexic'; 
+    
+    const hyperlegibleDesc = 'Deficiencias visuales:'; // Descripción de la opción Atkinson Hyperlegible
+    const hyperlegibleText = 'Atkinson Hyperlegible'; 
+    
+    const highLegibilityDesc = 'Alta legibilidad:'; // Descripción de las opciones de alta legibilidad
+    const opensansText = 'OpenSans'; 
+    const robotoText = 'Roboto'; 
+    const latoText = 'Lato'; 
+    const montserratText = 'Montserrat'; 
+
+  // Botones aumentar y disminuir fuente
+    const increaseFontText = 'A+'; // Botón para incrementar la fuente
+    const increaseFontTitle = 'Incrementa la fuente'; // Texto emergente al pasar el ratón
+    
+    const decreaseFontText = 'A-'; // Botón para reducir la fuente
+    const decreaseFontTitle = 'Reduce la fuente'; // Texto emergente al pasar el ratón
+
+  // Botón para traducir
+    const translateText = '🌐'; // Texto para el botón de traducción de Google
+    const translateTitle = 'Traduce la página'; // Texto emergente al pasar el ratón
+
+  // Botón para leer / detener la lectura en voz alta
+    let readText = 'Leer'; // Botón para leer en voz alta el contenido de la página
+    const readTextTitle ='Lee en voz alta la selección o la página entera'; // Texto emergente al pasar el ratón
+    
+    const stopText = 'Detener'; // Texto del botón para detener la lectura
+    const stopTextTitle = 'Detiene la lectura'; // Texto emergente al pasar el ratón
+  
+  // Botones para que los botones estén siempre visibles
+    let floatingFix = 'Fijar'; // Texto del botón flotante cuando está sobre el texto
+    let floatingFixTitle = 'Fija la barra de botones en la parte superior'; // Texto emergente al pasar el ratón
+    
+    let floatingFloat = 'Flotar'; //Texto del botón flotante cuando está fijo en la parte superior
+    let floatingFloatTitle = 'La barra permanecerá siempre visible';
+  
+  
+  // Enlace +Info
+    const infoText = '+Info'; // Texto del enlace +Info
+    const infoTextLink = 'https://batexego.bilateria.org'; // Destino del enlace de +Info
+
+// Fin 
+  
+
+  readText = `${readText} (${document.documentElement.lang})`; //Se añade el idioma al botón Leer
+  
+
+  let originalFont;
+  let currentFontSize;
+  let originalFontSize;
+  let isReading = false;
+  let utterance = new SpeechSynthesisUtterance();
+  let googleTranslateWidgetVisible = localStorage.getItem('googleTranslateWidgetVisible');
+
+  function setFont(font) {
+  document.body.style.fontFamily = font;
+  localStorage.setItem('font', font);
+  }
+
+  function setFontSize(size) {
+  currentFontSize = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'));
+  currentFontSize += size;
+  document.body.style.fontSize = currentFontSize + 'px';
+  localStorage.setItem('fontSize', currentFontSize + 'px');
+  }
+  
+  
+
+function toggleGoogleTranslateWidget() {
+  if (!googleTranslateWidgetVisible) {
+    const script = document.createElement('script');
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.id = 'google-translate-script';
+    document.head.appendChild(script);
+    
+    const googleTranslateElement = document.createElement('div');
+    googleTranslateElement.id = 'google_translate_element';
+    googleTranslateElement.style.position = 'fixed';
+    googleTranslateElement.style.top = '0';
+    googleTranslateElement.style.right = '0';
+    googleTranslateElement.style.zIndex = '1000';
+    document.body.appendChild(googleTranslateElement);
+
+    window.googleTranslateElementInit = function() {
+      new google.translate.TranslateElement({pageLanguage: 'auto', layout: google.translate.TranslateElement.FloatPosition.TOP_RIGHT}, 'google_translate_element');
+    };
+
+    googleTranslateWidgetVisible = true;
+    
+  } else {
+    const script = document.getElementById('google-translate-script');
+    script.remove();
+    
+    const googleTranslateElement = document.getElementById('google_translate_element');
+    googleTranslateElement.remove();
+
+    googleTranslateWidgetVisible = false;
+  }
+  localStorage.setItem('googleTranslateWidgetVisible',googleTranslateWidgetVisible);
+}
+
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+
+    googleTranslateWidgetVisible = JSON.parse(localStorage.getItem('googleTranslateWidgetVisible'));
+  if(googleTranslateWidgetVisible) {
+    googleTranslateWidgetVisible = false;
+    toggleGoogleTranslateWidget();
+  }
+
+    
+  
+    originalFont = window.getComputedStyle(document.body).getPropertyValue('font-family');
+    localStorage.setItem('originalFont', originalFont);
+    let font = localStorage.getItem('font');
+    if (!font) {
+    font = originalFont;
+    }
+    document.body.style.fontFamily = font;
+
+    let fontSize = localStorage.getItem('fontSize');
+    originalFontSize = window.getComputedStyle(document.body).getPropertyValue('font-size');
+    localStorage.setItem('originalFontSize', originalFontSize);
+    if (!fontSize) {
+    fontSize = originalFontSize
+    localStorage.setItem('fontSize', fontSize);
+    }
+    document.body.style.fontSize = fontSize;
+
+    const fontButtonContainer = document.createElement('div');
+    fontButtonContainer.classList.add('fontButtonContainer'); 
+    
+    const selectContainer = document.createElement('div');
+    selectContainer.classList.add('select-container');
+    const select = document.createElement('select');
+    select.classList.add('z-index');
+    const standardOption = document.createElement('option');
+    standardOption.value = 'standard';
+    standardOption.text = standardText;
+
+    const defaultFontOptGroup = document.createElement('optgroup');
+    defaultFontOptGroup.label = defaultText;
+    defaultFontOptGroup.appendChild(standardOption);
+
+    select.appendChild(defaultFontOptGroup);
+
+
+    const dyslexicOption = document.createElement('option');
+    dyslexicOption.value = 'dyslexic';
+    dyslexicOption.text = dyslexicText;
+    select.add(dyslexicOption);
+
+    const dyslexicOptGroup = document.createElement('optgroup');
+    dyslexicOptGroup.label = dyslexicDesc;
+    dyslexicOptGroup.appendChild(dyslexicOption);
+    select.appendChild(dyslexicOptGroup);
+
+    const hyperlegibleOption = document.createElement('option');
+    hyperlegibleOption.value = 'hyperlegible';
+    hyperlegibleOption.text = hyperlegibleText;
+    select.add(hyperlegibleOption);
+
+    const hyperlegibleOptGroup = document.createElement('optgroup');
+    hyperlegibleOptGroup.label = hyperlegibleDesc;
+    hyperlegibleOptGroup.appendChild(hyperlegibleOption);
+    select.appendChild(hyperlegibleOptGroup);
+
+    const opensansOption = document.createElement('option');
+    opensansOption.value = 'Open Sans';
+    opensansOption.text = opensansText;
+    select.add(opensansOption);
+
+    const robotoOption = document.createElement('option');
+    robotoOption.value = 'Roboto';
+    robotoOption.text = robotoText;
+    select.add(robotoOption);
+
+    const latoOption = document.createElement('option');
+    latoOption.value = 'Lato';
+    latoOption.text = latoText;
+    select.add(latoOption);
+
+    const montserratOption = document.createElement('option');
+    montserratOption.value = 'Montserrat';
+    montserratOption.text = montserratText;
+    select.add(montserratOption);  
+    
+
+    const highLegibilityOptGroup = document.createElement('optgroup');
+    highLegibilityOptGroup.label = highLegibilityDesc;
+    highLegibilityOptGroup.appendChild(latoOption);
+    highLegibilityOptGroup.appendChild(montserratOption);
+    highLegibilityOptGroup.appendChild(opensansOption);
+    highLegibilityOptGroup.appendChild(robotoOption);
+    
+    
+    
+    select.appendChild(highLegibilityOptGroup);
+
+    // Seleccionar la opción correspondiente al cargar la página
+    if (font === originalFont) { // Nueva condición
+    select.selectedIndex = 0; // Nueva línea
+    } else if (font === 'OpenDyslexic') {
+    select.selectedIndex = 1;
+    } else if (font === 'Atkinson Hyperlegible') {
+    select.selectedIndex = 2;
+    } else if (font === 'Roboto') {
+    select.selectedIndex = 6;
+    } else if (font === 'Lato') {
+    select.selectedIndex = 3;
+    } else if (font === 'Open Sans') {
+    select.selectedIndex = 5;
+    } else if (font === 'Montserrat') {
+    select.selectedIndex = 4;
+    }
+
+    select.addEventListener('change', () => {
+    const font = select.value;
+    if (font === 'standard') {
+    setFont(originalFont);
+    fontSize = originalFontSize;
+    localStorage.setItem('fontSize', fontSize);
+    document.body.style.fontSize = localStorage.getItem('originalFontSize');
+    } else if (font === 'dyslexic') {
+    setFont('OpenDyslexic');
+    } else if (font === 'hyperlegible') {
+    setFont('Atkinson Hyperlegible');
+    } else if (font === 'Open Sans') {
+    setFont('Open Sans');
+    } else if (font === 'Roboto') {
+    setFont('Roboto');
+    } else if (font === 'Lato') {
+    setFont('Lato');
+    }  else if (font === 'Montserrat') {
+    setFont('Montserrat');
+    }
+    });
+
+    selectContainer.appendChild(select);
+    fontButtonContainer.appendChild(selectContainer);
+    
+
+    const increaseFontButton = document.createElement('button');
+    increaseFontButton.classList.add('font-button');
+    increaseFontButton.textContent = increaseFontText;
+    increaseFontButton.setAttribute('title', increaseFontTitle);
+    increaseFontButton.addEventListener('click', () => setFontSize(1));
+    fontButtonContainer.appendChild(increaseFontButton);
+
+    const decreaseFontButton = document.createElement('button');
+    decreaseFontButton.classList.add('font-button');
+    decreaseFontButton.textContent = decreaseFontText;
+    decreaseFontButton.setAttribute('title', decreaseFontTitle);
+    decreaseFontButton.addEventListener('click', () => setFontSize(-1));
+    fontButtonContainer.appendChild(decreaseFontButton);
+    
+    const translateButton = document.createElement('button');
+    translateButton.classList.add('font-button');
+    translateButton.textContent = translateText;
+    translateButton.setAttribute('title', translateTitle);
+    translateButton.addEventListener('click', toggleGoogleTranslateWidget);
+    fontButtonContainer.appendChild(translateButton);
+
+  // Botón para leer en voz alta
+    const readButton = document.createElement('button');
+    readButton.classList.add('font-button');
+    readButton.textContent = readText;
+    readButton.setAttribute('title', readTextTitle);
+    
+    readButton.addEventListener('click', () => {
+    let selectedText = window.getSelection().toString();
+    let text = '';
+    let lang = document.documentElement.lang;
+    if (selectedText !== '') {
+      text = selectedText;
+      let selectedNode = window.getSelection().anchorNode;
+      while (selectedNode && selectedNode.nodeType !== Node.ELEMENT_NODE) {
+        selectedNode = selectedNode.parentNode;
+      }
+      if (selectedNode) {
+        const selectedLang = selectedNode.getAttribute('lang');
+        if (selectedLang) {
+          lang = selectedLang;
+        }
+      }
+    } else {
+      text = document.body.innerText;
+      const bodyLang = document.body.getAttribute('lang');
+      if (bodyLang) {
+        lang = bodyLang;
+      }
+    }
+
+    utterance.lang = lang;
+    utterance.text = text;
+
+    if (!isReading) {
+      isReading = true;
+      readButton.textContent = `${stopText} (${lang})`;
+      readButton.setAttribute('title', stopTextTitle);
+      speechSynthesis.speak(utterance);
+    } else {
+      isReading = false;
+      readButton.textContent = readText;
+      readButton.setAttribute('title', readTextTitle);
+      speechSynthesis.cancel();
+    }
+
+    utterance.addEventListener('end', () => {
+      isReading = false;
+      readButton.textContent = readText;
+      readButton.setAttribute('title', readTextTitle);
+    });
+  });  
+    
+    fontButtonContainer.appendChild(readButton);
+    
+  // Botón para que la barra esté siempre visible
+    const floatingButton = document.createElement('button');
+    floatingButton.classList.add('font-button');
+    floatingButton.textContent = floatingFloat;
+    floatingButton.setAttribute('title', floatingFloatTitle);
+    floatingButton.addEventListener('click', () => {
+    if (floatingButton.textContent === floatingFix) {
+      fontButtonContainer.style.position = 'static';
+      floatingButton.textContent = floatingFloat;
+      floatingButton.setAttribute('title', floatingFloatTitle);
+      localStorage.setItem('floatState', 'static');
+    } else {
+      fontButtonContainer.style.position = 'fixed';
+      floatingButton.textContent = floatingFix;
+      floatingButton.setAttribute('title', floatingFixTitle);
+      localStorage.setItem('floatState', 'fixed');
+    }
+  });
+
+    
+
+    let floatState = localStorage.getItem('floatState');
+    if (!floatState) {
+      floatState = 'static';
+      floatingButton.textContent = floatingFix;
+      floatingButton.setAttribute('title', floatingFixTitle);
+    }
+    if (floatState === 'fixed') {
+      fontButtonContainer.style.position = 'fixed';
+      floatingButton.textContent = floatingFix;
+      floatingButton.setAttribute('title', floatingFixTitle);
+    } else {
+      fontButtonContainer.style.position = 'static';
+      floatingButton.textContent = floatingFloat;
+      floatingButton.setAttribute('title', floatingFloatTitle);
+    }
+    
+    localStorage.setItem('floatState', floatState);
+    
+  fontButtonContainer.appendChild(floatingButton);
+
+
+    const infoLink = document.createElement('a');
+    infoLink.textContent = infoText;
+    infoLink.href = infoTextLink;
+    infoLink.target = '_blank';
+    infoLink.style.marginLeft = '8px';
+    infoLink.style.fontSize = '12px';
+    fontButtonContainer.appendChild(infoLink);
+
+    
+    infoLink.classList.add('z-index');
+
+    document.body.insertBefore(fontButtonContainer, document.body.firstChild);
+   
+  });
+  
+  
+
+</script></head>
+<body class="exe-web-site" id="exe-node-4"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">UT 1. NOCIONES GENERALES SOBRE PREVENCIÓN DE RIESGOS LABORALES</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">UT 1. Nociones generales sobre prevención de riesgos laborales</a></li>
+   <li><a href="1_concepto_de_prevencin_de_riesgos_laborales.html" class="no-ch">1. Concepto de prevención de riesgos laborales</a></li>
+   <li><a href="2_trabajo_y_salud.html" class="no-ch">2. Trabajo y salud</a></li>
+   <li id="active"><a href="3_los_riesgos_profesionales.html" class="active no-ch">3. Los riesgos profesionales</a></li>
+   <li><a href="4_las_condiciones_de_trabajo.html" class="no-ch">4. Las condiciones de trabajo</a></li>
+   <li><a href="5_daos_profesionales_accidentes_de_trabajo_y_enfermedades_profesionales.html" class="no-ch">5. Daños profesionales: accidentes de trabajo y enfermedades profesionales</a></li>
+   <li><a href="6_las_tcnicas_de_prevencin.html" class="daddy">6. Las técnicas de prevención</a>
+   <ul class="other-section">
+      <li><a href="61_la_seguridad_en_el_trabajo.html" class="daddy">6.1. La Seguridad en el Trabajo</a>
+      <ul class="other-section">
+         <li><a href="611_tcnicas_de_seguridad.html" class="no-ch">6.1.1. Técnicas de seguridad</a></li>
+         <li><a href="612_aplicacin_de_las_tcnicas_de_seguridad.html" class="no-ch">6.1.2. Aplicación de las técnicas de seguridad</a></li>
+      </ul>
+      </li>
+      <li><a href="62_la_higiene_industrial.html" class="daddy">6.2. La Higiene Industrial</a>
+      <ul class="other-section">
+         <li><a href="621_higiene_terica.html" class="no-ch">6.2.1. Higiene teórica</a></li>
+         <li><a href="622_higiene_de_campo.html" class="no-ch">6.2.2. Higiene de campo</a></li>
+         <li><a href="623_higiene_analtica.html" class="no-ch">6.2.3. Higiene analítica</a></li>
+         <li><a href="624_higiene_operativa.html" class="no-ch">6.2.4. Higiene operativa</a></li>
+      </ul>
+      </li>
+      <li><a href="63_la_medicina_del_trabajo.html" class="no-ch">6.3. La Medicina del Trabajo</a></li>
+      <li><a href="64_la_ergonoma.html" class="no-ch">6.4. La Ergonomía</a></li>
+      <li><a href="65_la_psicosociologa.html" class="no-ch">6.5. La Psicosociología</a></li>
+   </ul>
+   </li>
+   <li><a href="_ficha_tcnica_y_descarga_.html" class="no-ch">- Ficha técnica y descarga -</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="2_trabajo_y_salud.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="4_las_condiciones_de_trabajo.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">3. Los riesgos profesionales</h1></header>
+<article class="iDevice_wrapper textIdevice em_iDevice" id="id3">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header iDevice_header_noIcon"><h1 class="iDeviceTitle"> </h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<div id="ta3_115_2" class="block iDevice_content">
+<div class="exe-text"><p style="text-align: justify;"><span style="font-weight: 400;">Podemos definir los <strong>riesgos profesionales</strong> como</span><span style="font-weight: 400;"> "aquellos factores o circunstancias presentes en el medio laboral que pueden repercutir negativamente en la salud de los trabajadores, provocando accidentes o causando enfermedades".</span></p>
+<p style="text-align: justify;"><span style="font-weight: 400;">Los riesgos profesionales se clasifican en cuatro <strong>c</strong></span><b>ategorías</b><span style="font-weight: 400;">:</span></p>
+<ul style="text-align: justify;">
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Riesgos derivados de la </span><b>ausencia de condiciones de seguridad</b><b>,</b><span style="font-weight: 400;"> en máquinas, herramientas, instalaciones industriales, etc. </span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Riesgos derivados de las <strong>condiciones ambientales de trabajo</strong></span><span style="font-weight: 400;">: estos a su vez se pueden dividir en tres subcategorías: </span>
+<ul>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Agentes <strong>físicos</strong>: ruido, vibraciones, iluminación, radiaciones y temperatura.</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Agentes <strong>químicos</strong>: polvos, gases, etc.</span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Agentes <strong>biológicos</strong>: virus, hongos, bacterias, etc.</span><span style="font-weight: 400;"></span></li>
+</ul>
+</li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Riesgos derivados de una inadecuada <strong>carga de trabajo</strong></span><span style="font-weight: 400;"> (física y  mental), también llamados <strong>ergonómicos.</strong></span></li>
+<li style="font-weight: 400;" aria-level="1"><span style="font-weight: 400;">Riesgos derivados de una inadecuada <strong>organización del trabajo</strong></span><span style="font-weight: 400;">, tales como la duración y distribución de la jornada (horarios y turnos de trabajo), la falta de comunicación, el aislamiento, la falta de autonomía en la toma de decisiones, etc. también llamados <strong>psicosociales.</strong></span></li>
+</ul>
+<div style="width: 100%; text-align: center;">
+<div style="position: relative; padding-bottom: 56.25%; padding-top: 0px; height: 0px; text-align: center;">
+<figure class="exe-figure exe-media position-center" style="width: 1200pxpx;"><iframe width="1200px" height="675px" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://view.genial.ly/5c97d312e1906b76bf62f0bb" allowfullscreen="allowfullscreen"></iframe></figure>
+</div>
+<p style="text-align: center;"><a href="https://view.genial.ly/5c97d312e1906b76bf62f0bb" target="_blank" class="author" rel="noopener">@Esther_fol</a>. <a href="https://twitter.com/esther_fol?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" class="title" rel="noopener"><em>Factores de riesgo laboral</em></a></p>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper MultichoiceIdevice em_iDevice em_iDevice_question" id="id37">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Pregunta de Elección Múltiple</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-37_86" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion37_86" class="block question iDevice_content">
+<p><span>Una herramienta muy </span><strong>ruidosa</strong><span> supone un riesgo:</span></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i37_89" class="sr-av"><a href="#answer-37_89">Opción 1</a></label><input type="radio" name="option37_86" id="i37_89" class="exe-radio-option exe-radio-option-0-4-37_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-37_89"><div id="taans37_89" class="block iDevice_content">
+<p><span>Derivado de las condiciones ergonómicas</span></p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i37_92" class="sr-av"><a href="#answer-37_92">Opción 2</a></label><input type="radio" name="option37_86" id="i37_92" class="exe-radio-option exe-radio-option-1-4-37_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-37_92"><div id="taans37_92" class="block iDevice_content">
+<p>Producido por agentes físicos</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i37_265" class="sr-av"><a href="#answer-37_265">Opción 3</a></label><input type="radio" name="option37_86" id="i37_265" class="exe-radio-option exe-radio-option-2-4-37_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-37_265"><div id="taans37_265" class="block iDevice_content">
+<p>Derivado de una inadecuada carga de trabajo</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i37_268" class="sr-av"><a href="#answer-37_268">Opción 4</a></label><input type="radio" name="option37_86" id="i37_268" class="exe-radio-option exe-radio-option-3-4-37_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-37_268"><div id="taans37_268" class="block iDevice_content">
+<p>Producido por agentes biológicos</p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b37_86" class="feedback js-hidden">
+<div id="taf37_89" class=" iDevice_content">
+<p>Incorrecto</p>
+</div>
+</section>
+<section id="sa1b37_86" class="feedback js-hidden">
+<div id="taf37_92" class=" iDevice_content">
+<p>Correcto</p>
+</div>
+</section>
+<section id="sa2b37_86" class="feedback js-hidden">
+<div id="taf37_265" class=" iDevice_content">
+<p>Incorrecto</p>
+</div>
+</section>
+<section id="sa3b37_86" class="feedback js-hidden">
+<div id="taf37_268" class=" iDevice_content">
+<p>Incorrecto</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-37_89">Incorrecto</a><span> (<a href="#sa0b37_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-37_92">Opción correcta</a><span> (<a href="#sa1b37_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-37_265">Incorrecto</a><span> (<a href="#sa2b37_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-37_268">Incorrecto</a><span> (<a href="#sa3b37_86">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<article class="iDevice_wrapper MultichoiceIdevice em_iDevice em_iDevice_question" id="id38">
+<div class="iDevice emphasis1" >
+<header class="iDevice_header"><h1 class="iDeviceTitle">Pregunta de Elección Múltiple</h1></header>
+<div class="iDevice_inner">
+<div class="iDevice_content_wrapper">
+<section class="question">
+<form name="multi-choice-form-38_86" action="#" onsubmit="return false" class="activity-form">
+<h1 class="js-sr-av">Pregunta</h1>
+<div id="taquestion38_86" class="block question iDevice_content">
+<p><span>Una máquina que </span><strong>carece de resguardos</strong><span> pudiendo atrapar a los operarios supone un riesgo:</span></p>
+</div>
+<section class="iDevice_answers">
+<h1 class="js-sr-av">Respuestas</h1>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_89" class="sr-av"><a href="#answer-38_89">Opción 1</a></label><input type="radio" name="option38_86" id="i38_89" class="exe-radio-option exe-radio-option-0-4-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_89"><div id="taans38_89" class="block iDevice_content">
+<p>Derivado de las condiciones de seguridad</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_92" class="sr-av"><a href="#answer-38_92">Opción 2</a></label><input type="radio" name="option38_86" id="i38_92" class="exe-radio-option exe-radio-option-1-4-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_92"><div id="taans38_92" class="block iDevice_content">
+<p>Derivado de las condiciones ambientales</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_271" class="sr-av"><a href="#answer-38_271">Opción 3</a></label><input type="radio" name="option38_86" id="i38_271" class="exe-radio-option exe-radio-option-2-4-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_271"><div id="taans38_271" class="block iDevice_content">
+<p>Derivado de las condiciones ergonómicas</p>
+</div>
+</div>
+</section>
+<section class="iDevice_answer">
+<p class="iDevice_answer-field js-required">
+<label for="i38_274" class="sr-av"><a href="#answer-38_274">Opción 4</a></label><input type="radio" name="option38_86" id="i38_274" class="exe-radio-option exe-radio-option-3-4-38_86-multi"/>
+</p>
+<div class="iDevice_answer-content" id="answer-38_274"><div id="taans38_274" class="block iDevice_content">
+<p>Derivado de las condiciones psicosociales</p>
+</div>
+</div>
+</section>
+</section>
+<section class="iDevice_feedbacks js-feedback">
+<h1 class="js-sr-av">Retroalimentación</h1>
+<section id="sa0b38_86" class="feedback js-hidden">
+<div id="taf38_89" class=" iDevice_content">
+<p>Correcto</p>
+</div>
+</section>
+<section id="sa1b38_86" class="feedback js-hidden">
+<div id="taf38_92" class=" iDevice_content">
+<p>Incorrecto</p>
+</div>
+</section>
+<section id="sa2b38_86" class="feedback js-hidden">
+<div id="taf38_271" class=" iDevice_content">
+<p>Incorrecto</p>
+</div>
+</section>
+<section id="sa3b38_86" class="feedback js-hidden">
+<div id="taf38_274" class=" iDevice_content">
+<p>Correcto</p>
+</div>
+</section>
+</section>
+</form>
+<section class="iDevice_solution feedback js-hidden">
+<h1>Solución</h1>
+<ol>
+<li><a href="#answer-38_89">Opción correcta</a><span> (<a href="#sa0b38_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-38_92">Incorrecto</a><span> (<a href="#sa1b38_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-38_271">Incorrecto</a><span> (<a href="#sa2b38_86">Retroalimentación</a>)</span></li>
+<li><a href="#answer-38_274">Incorrecto</a><span> (<a href="#sa3b38_86">Retroalimentación</a>)</span></li>
+</ol>
+</section>
+</section>
+</div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="2_trabajo_y_salud.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="4_las_condiciones_de_trabajo.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_cedec_js.js"></script></body></html>
