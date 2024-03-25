@@ -6,6 +6,10 @@
   <unicode value="UT 1. NOCIONES GENERALES SOBRE PREVENCIÓN DE RIESGOS LABORALES"></unicode>
   <string role="key" value="idevices"></string>
   <list></list>
+  <string role="key" value="_addAccessibilityToolbar"></string>
+  <bool value="1"></bool>
+  <string role="key" value="_addExeLink"></string>
+  <bool value="1"></bool>
   <string role="key" value="_addPagination"></string>
   <bool value="0"></bool>
   <string role="key" value="_addSearchBox"></string>
@@ -25,463 +29,7 @@
   <string role="key" value="_exportElp"></string>
   <bool value="0"></bool>
   <string role="key" value="_extraHeadContent"></string>
-  <unicode value="&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Lato&amp;display=swap&quot; rel=&quot;stylesheet&quot;  type=&quot;text/css&quot;&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&amp;display=swap&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-&lt;link href=&quot;https://fonts.cdnfonts.com/css/opendyslexic&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Open+Sans&amp;display=swap&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap&quot; rel=&quot;stylesheet&quot;  type=&quot;text/css&quot;&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap&quot; rel=&quot;stylesheet&quot;  type=&quot;text/css&quot;&gt;
-
-
-&lt;style&gt;
-  
-  .z-index {
-    z-index: 999;
-  }
-
-  .select-container {
-    display: inline-block;
-    position: relative;
-    z-index: 999;
-  }
-
-  .font-button {
-    padding: 8px 16px;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 8px;
-    text-align: center;
-    text-decoration: none;
-    background-color: white;
-    color: black;
-    z-index: 999;
-  }
-
-  .fontButtonContainer {
-     z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; /* establece el wrap para que los botones se distribuyan en varias líneas */
-    gap: 5px; /* ajusta el espacio entre los botones */
-    position: static; /* fija la barra de botones en la página: static para que aparezca en la parte superior, fixed para que quede flotando */
-    top: 40px; /* fija la barra de botones en la parte superior de la página */
-    left: 0; /* fija la barra de botones en el margen izquierdo */
-    right: 0; /* fija la barra de botones en el margen derecho */
-    margin: auto; /* centra la barra de botones horizontalmente */
-  }
-    
-  /* Estilo para el desplegable */
-  select {
-    padding: 8px 4px;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    margin: 6px;
-    text-align: center;
-    text-decoration: none;
-    background-color: white;
-  }
-  
-  select option {
-  text-align: left;
-  }
-  
-&lt;/style&gt;
-
-&lt;script&gt;
-
-// BatexeGo v3 Juan José de Haro 
-
-// Define los textos que se ven en pantalla. Reemplazar el texto entre comillas
-
-  // Textos del menú desplegable
-    const defaultText = 'Parámetros por defecto:'; //Descripción de la opción por defecto
-    const standardText = 'Fuente estándar'; // Fuente original del documento
-    
-    const dyslexicDesc = 'Dislexia:'; // Descripción de la opción OpenDyslexic  
-    const dyslexicText = 'OpenDyslexic'; 
-    
-    const hyperlegibleDesc = 'Deficiencias visuales:'; // Descripción de la opción Atkinson Hyperlegible
-    const hyperlegibleText = 'Atkinson Hyperlegible'; 
-    
-    const highLegibilityDesc = 'Alta legibilidad:'; // Descripción de las opciones de alta legibilidad
-    const opensansText = 'OpenSans'; 
-    const robotoText = 'Roboto'; 
-    const latoText = 'Lato'; 
-    const montserratText = 'Montserrat'; 
-
-  // Botones aumentar y disminuir fuente
-    const increaseFontText = 'A+'; // Botón para incrementar la fuente
-    const increaseFontTitle = 'Incrementa la fuente'; // Texto emergente al pasar el ratón
-    
-    const decreaseFontText = 'A-'; // Botón para reducir la fuente
-    const decreaseFontTitle = 'Reduce la fuente'; // Texto emergente al pasar el ratón
-
-  // Botón para traducir
-    const translateText = '🌐'; // Texto para el botón de traducción de Google
-    const translateTitle = 'Traduce la página'; // Texto emergente al pasar el ratón
-
-  // Botón para leer / detener la lectura en voz alta
-    let readText = 'Leer'; // Botón para leer en voz alta el contenido de la página
-    const readTextTitle ='Lee en voz alta la selección o la página entera'; // Texto emergente al pasar el ratón
-    
-    const stopText = 'Detener'; // Texto del botón para detener la lectura
-    const stopTextTitle = 'Detiene la lectura'; // Texto emergente al pasar el ratón
-  
-  // Botones para que los botones estén siempre visibles
-    let floatingFix = 'Fijar'; // Texto del botón flotante cuando está sobre el texto
-    let floatingFixTitle = 'Fija la barra de botones en la parte superior'; // Texto emergente al pasar el ratón
-    
-    let floatingFloat = 'Flotar'; //Texto del botón flotante cuando está fijo en la parte superior
-    let floatingFloatTitle = 'La barra permanecerá siempre visible';
-  
-  
-  // Enlace +Info
-    const infoText = '+Info'; // Texto del enlace +Info
-    const infoTextLink = 'https://batexego.bilateria.org'; // Destino del enlace de +Info
-
-// Fin 
-  
-
-  readText = `${readText} (${document.documentElement.lang})`; //Se añade el idioma al botón Leer
-  
-
-  let originalFont;
-  let currentFontSize;
-  let originalFontSize;
-  let isReading = false;
-  let utterance = new SpeechSynthesisUtterance();
-  let googleTranslateWidgetVisible = localStorage.getItem('googleTranslateWidgetVisible');
-
-  function setFont(font) {
-  document.body.style.fontFamily = font;
-  localStorage.setItem('font', font);
-  }
-
-  function setFontSize(size) {
-  currentFontSize = parseInt(window.getComputedStyle(document.body).getPropertyValue('font-size'));
-  currentFontSize += size;
-  document.body.style.fontSize = currentFontSize + 'px';
-  localStorage.setItem('fontSize', currentFontSize + 'px');
-  }
-  
-  
-
-function toggleGoogleTranslateWidget() {
-  if (!googleTranslateWidgetVisible) {
-    const script = document.createElement('script');
-    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    script.id = 'google-translate-script';
-    document.head.appendChild(script);
-    
-    const googleTranslateElement = document.createElement('div');
-    googleTranslateElement.id = 'google_translate_element';
-    googleTranslateElement.style.position = 'fixed';
-    googleTranslateElement.style.top = '0';
-    googleTranslateElement.style.right = '0';
-    googleTranslateElement.style.zIndex = '1000';
-    document.body.appendChild(googleTranslateElement);
-
-    window.googleTranslateElementInit = function() {
-      new google.translate.TranslateElement({pageLanguage: 'auto', layout: google.translate.TranslateElement.FloatPosition.TOP_RIGHT}, 'google_translate_element');
-    };
-
-    googleTranslateWidgetVisible = true;
-    
-  } else {
-    const script = document.getElementById('google-translate-script');
-    script.remove();
-    
-    const googleTranslateElement = document.getElementById('google_translate_element');
-    googleTranslateElement.remove();
-
-    googleTranslateWidgetVisible = false;
-  }
-  localStorage.setItem('googleTranslateWidgetVisible',googleTranslateWidgetVisible);
-}
-
-
-
-
-  document.addEventListener('DOMContentLoaded', () =&gt; {
-
-    googleTranslateWidgetVisible = JSON.parse(localStorage.getItem('googleTranslateWidgetVisible'));
-  if(googleTranslateWidgetVisible) {
-    googleTranslateWidgetVisible = false;
-    toggleGoogleTranslateWidget();
-  }
-
-    
-  
-    originalFont = window.getComputedStyle(document.body).getPropertyValue('font-family');
-    localStorage.setItem('originalFont', originalFont);
-    let font = localStorage.getItem('font');
-    if (!font) {
-    font = originalFont;
-    }
-    document.body.style.fontFamily = font;
-
-    let fontSize = localStorage.getItem('fontSize');
-    originalFontSize = window.getComputedStyle(document.body).getPropertyValue('font-size');
-    localStorage.setItem('originalFontSize', originalFontSize);
-    if (!fontSize) {
-    fontSize = originalFontSize
-    localStorage.setItem('fontSize', fontSize);
-    }
-    document.body.style.fontSize = fontSize;
-
-    const fontButtonContainer = document.createElement('div');
-    fontButtonContainer.classList.add('fontButtonContainer'); 
-    
-    const selectContainer = document.createElement('div');
-    selectContainer.classList.add('select-container');
-    const select = document.createElement('select');
-    select.classList.add('z-index');
-    const standardOption = document.createElement('option');
-    standardOption.value = 'standard';
-    standardOption.text = standardText;
-
-    const defaultFontOptGroup = document.createElement('optgroup');
-    defaultFontOptGroup.label = defaultText;
-    defaultFontOptGroup.appendChild(standardOption);
-
-    select.appendChild(defaultFontOptGroup);
-
-
-    const dyslexicOption = document.createElement('option');
-    dyslexicOption.value = 'dyslexic';
-    dyslexicOption.text = dyslexicText;
-    select.add(dyslexicOption);
-
-    const dyslexicOptGroup = document.createElement('optgroup');
-    dyslexicOptGroup.label = dyslexicDesc;
-    dyslexicOptGroup.appendChild(dyslexicOption);
-    select.appendChild(dyslexicOptGroup);
-
-    const hyperlegibleOption = document.createElement('option');
-    hyperlegibleOption.value = 'hyperlegible';
-    hyperlegibleOption.text = hyperlegibleText;
-    select.add(hyperlegibleOption);
-
-    const hyperlegibleOptGroup = document.createElement('optgroup');
-    hyperlegibleOptGroup.label = hyperlegibleDesc;
-    hyperlegibleOptGroup.appendChild(hyperlegibleOption);
-    select.appendChild(hyperlegibleOptGroup);
-
-    const opensansOption = document.createElement('option');
-    opensansOption.value = 'Open Sans';
-    opensansOption.text = opensansText;
-    select.add(opensansOption);
-
-    const robotoOption = document.createElement('option');
-    robotoOption.value = 'Roboto';
-    robotoOption.text = robotoText;
-    select.add(robotoOption);
-
-    const latoOption = document.createElement('option');
-    latoOption.value = 'Lato';
-    latoOption.text = latoText;
-    select.add(latoOption);
-
-    const montserratOption = document.createElement('option');
-    montserratOption.value = 'Montserrat';
-    montserratOption.text = montserratText;
-    select.add(montserratOption);  
-    
-
-    const highLegibilityOptGroup = document.createElement('optgroup');
-    highLegibilityOptGroup.label = highLegibilityDesc;
-    highLegibilityOptGroup.appendChild(latoOption);
-    highLegibilityOptGroup.appendChild(montserratOption);
-    highLegibilityOptGroup.appendChild(opensansOption);
-    highLegibilityOptGroup.appendChild(robotoOption);
-    
-    
-    
-    select.appendChild(highLegibilityOptGroup);
-
-    // Seleccionar la opción correspondiente al cargar la página
-    if (font === originalFont) { // Nueva condición
-    select.selectedIndex = 0; // Nueva línea
-    } else if (font === 'OpenDyslexic') {
-    select.selectedIndex = 1;
-    } else if (font === 'Atkinson Hyperlegible') {
-    select.selectedIndex = 2;
-    } else if (font === 'Roboto') {
-    select.selectedIndex = 6;
-    } else if (font === 'Lato') {
-    select.selectedIndex = 3;
-    } else if (font === 'Open Sans') {
-    select.selectedIndex = 5;
-    } else if (font === 'Montserrat') {
-    select.selectedIndex = 4;
-    }
-
-    select.addEventListener('change', () =&gt; {
-    const font = select.value;
-    if (font === 'standard') {
-    setFont(originalFont);
-    fontSize = originalFontSize;
-    localStorage.setItem('fontSize', fontSize);
-    document.body.style.fontSize = localStorage.getItem('originalFontSize');
-    } else if (font === 'dyslexic') {
-    setFont('OpenDyslexic');
-    } else if (font === 'hyperlegible') {
-    setFont('Atkinson Hyperlegible');
-    } else if (font === 'Open Sans') {
-    setFont('Open Sans');
-    } else if (font === 'Roboto') {
-    setFont('Roboto');
-    } else if (font === 'Lato') {
-    setFont('Lato');
-    }  else if (font === 'Montserrat') {
-    setFont('Montserrat');
-    }
-    });
-
-    selectContainer.appendChild(select);
-    fontButtonContainer.appendChild(selectContainer);
-    
-
-    const increaseFontButton = document.createElement('button');
-    increaseFontButton.classList.add('font-button');
-    increaseFontButton.textContent = increaseFontText;
-    increaseFontButton.setAttribute('title', increaseFontTitle);
-    increaseFontButton.addEventListener('click', () =&gt; setFontSize(1));
-    fontButtonContainer.appendChild(increaseFontButton);
-
-    const decreaseFontButton = document.createElement('button');
-    decreaseFontButton.classList.add('font-button');
-    decreaseFontButton.textContent = decreaseFontText;
-    decreaseFontButton.setAttribute('title', decreaseFontTitle);
-    decreaseFontButton.addEventListener('click', () =&gt; setFontSize(-1));
-    fontButtonContainer.appendChild(decreaseFontButton);
-    
-    const translateButton = document.createElement('button');
-    translateButton.classList.add('font-button');
-    translateButton.textContent = translateText;
-    translateButton.setAttribute('title', translateTitle);
-    translateButton.addEventListener('click', toggleGoogleTranslateWidget);
-    fontButtonContainer.appendChild(translateButton);
-
-  // Botón para leer en voz alta
-    const readButton = document.createElement('button');
-    readButton.classList.add('font-button');
-    readButton.textContent = readText;
-    readButton.setAttribute('title', readTextTitle);
-    
-    readButton.addEventListener('click', () =&gt; {
-    let selectedText = window.getSelection().toString();
-    let text = '';
-    let lang = document.documentElement.lang;
-    if (selectedText !== '') {
-      text = selectedText;
-      let selectedNode = window.getSelection().anchorNode;
-      while (selectedNode &amp;&amp; selectedNode.nodeType !== Node.ELEMENT_NODE) {
-        selectedNode = selectedNode.parentNode;
-      }
-      if (selectedNode) {
-        const selectedLang = selectedNode.getAttribute('lang');
-        if (selectedLang) {
-          lang = selectedLang;
-        }
-      }
-    } else {
-      text = document.body.innerText;
-      const bodyLang = document.body.getAttribute('lang');
-      if (bodyLang) {
-        lang = bodyLang;
-      }
-    }
-
-    utterance.lang = lang;
-    utterance.text = text;
-
-    if (!isReading) {
-      isReading = true;
-      readButton.textContent = `${stopText} (${lang})`;
-      readButton.setAttribute('title', stopTextTitle);
-      speechSynthesis.speak(utterance);
-    } else {
-      isReading = false;
-      readButton.textContent = readText;
-      readButton.setAttribute('title', readTextTitle);
-      speechSynthesis.cancel();
-    }
-
-    utterance.addEventListener('end', () =&gt; {
-      isReading = false;
-      readButton.textContent = readText;
-      readButton.setAttribute('title', readTextTitle);
-    });
-  });  
-    
-    fontButtonContainer.appendChild(readButton);
-    
-  // Botón para que la barra esté siempre visible
-    const floatingButton = document.createElement('button');
-    floatingButton.classList.add('font-button');
-    floatingButton.textContent = floatingFloat;
-    floatingButton.setAttribute('title', floatingFloatTitle);
-    floatingButton.addEventListener('click', () =&gt; {
-    if (floatingButton.textContent === floatingFix) {
-      fontButtonContainer.style.position = 'static';
-      floatingButton.textContent = floatingFloat;
-      floatingButton.setAttribute('title', floatingFloatTitle);
-      localStorage.setItem('floatState', 'static');
-    } else {
-      fontButtonContainer.style.position = 'fixed';
-      floatingButton.textContent = floatingFix;
-      floatingButton.setAttribute('title', floatingFixTitle);
-      localStorage.setItem('floatState', 'fixed');
-    }
-  });
-
-    
-
-    let floatState = localStorage.getItem('floatState');
-    if (!floatState) {
-      floatState = 'static';
-      floatingButton.textContent = floatingFix;
-      floatingButton.setAttribute('title', floatingFixTitle);
-    }
-    if (floatState === 'fixed') {
-      fontButtonContainer.style.position = 'fixed';
-      floatingButton.textContent = floatingFix;
-      floatingButton.setAttribute('title', floatingFixTitle);
-    } else {
-      fontButtonContainer.style.position = 'static';
-      floatingButton.textContent = floatingFloat;
-      floatingButton.setAttribute('title', floatingFloatTitle);
-    }
-    
-    localStorage.setItem('floatState', floatState);
-    
-  fontButtonContainer.appendChild(floatingButton);
-
-
-    const infoLink = document.createElement('a');
-    infoLink.textContent = infoText;
-    infoLink.href = infoTextLink;
-    infoLink.target = '_blank';
-    infoLink.style.marginLeft = '8px';
-    infoLink.style.fontSize = '12px';
-    fontButtonContainer.appendChild(infoLink);
-
-    
-    infoLink.classList.add('z-index');
-
-    document.body.insertBefore(fontButtonContainer, document.body.firstChild);
-   
-  });
-  
-  
-
-&lt;/script&gt;"></unicode>
+  <unicode value="&lt;script&gt;$exe.options.atools.translator=true&lt;/script&gt;"></unicode>
   <string role="key" value="_fieldValidationInfo"></string>
   <dictionary>
    <unicode role="key" value="all"></unicode>
@@ -538,6 +86,8 @@ function toggleGoogleTranslateWidget() {
    <unicode value="Sección"></unicode>
    <unicode value="Unidad"></unicode>
   </list>
+  <string role="key" value="_loadMathEngine"></string>
+  <bool value="0"></bool>
   <string role="key" value="_name"></string>
   <unicode value="UT_1_-_Nociones_generales_sobre_prevencin"></unicode>
   <string role="key" value="_nextIdeviceId"></string>
@@ -647,7 +197,7 @@ function toggleGoogleTranslateWidget() {
                 <instance class="exe.engine.field.TextField">
                  <dictionary>
                   <string role="key" value="_id"></string>
-                  <int value="748"></int>
+                  <int value="771"></int>
                   <string role="key" value="_idevice"></string>
                   <none></none>
                   <string role="key" value="_instruc"></string>
@@ -661,7 +211,7 @@ function toggleGoogleTranslateWidget() {
                  </dictionary>
                 </instance>
                 <string role="key" value="_id"></string>
-                <unicode value="0_112_2.16"></unicode>
+                <unicode value="0_112_2.18"></unicode>
                 <string role="key" value="_imageResource"></string>
                 <instance class="exe.engine.resource.Resource" reference="5">
                  <dictionary>
@@ -672,7 +222,7 @@ function toggleGoogleTranslateWidget() {
                   <string role="key" value="_storageName"></string>
                   <string value="Documento_A4_Portada_Propuesta_Minimalista_Alegre_Morado_y_Verde.png"></string>
                   <string role="key" value="_userName"></string>
-                  <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\Documento_A4_Portada_Propuesta_Minimalista_Alegre_Morado_y_Verde.png"></string>
+                  <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\Documento_A4_Portada_Propuesta_Minimalista_Alegre_Morado_y_Verde.png"></string>
                   <string role="key" value="checksum"></string>
                   <string value="863df83ededda3024948e7d79256490a"></string>
                   <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -701,7 +251,7 @@ function toggleGoogleTranslateWidget() {
            <string role="key" value="intlinks_to_anchors"></string>
            <dictionary></dictionary>
            <string role="key" value="nextImageId"></string>
-           <int value="17"></int>
+           <int value="19"></int>
            <string role="key" value="parentNode"></string>
            <reference key="4"></reference>
           </dictionary>
@@ -863,7 +413,7 @@ function toggleGoogleTranslateWidget() {
                    <instance class="exe.engine.field.TextField">
                     <dictionary>
                      <string role="key" value="_id"></string>
-                     <int value="754"></int>
+                     <int value="776"></int>
                      <string role="key" value="_idevice"></string>
                      <none></none>
                      <string role="key" value="_instruc"></string>
@@ -877,7 +427,7 @@ function toggleGoogleTranslateWidget() {
                     </dictionary>
                    </instance>
                    <string role="key" value="_id"></string>
-                   <unicode value="1_113_2.12"></unicode>
+                   <unicode value="1_113_2.14"></unicode>
                    <string role="key" value="_imageResource"></string>
                    <instance class="exe.engine.resource.Resource" reference="9">
                     <dictionary>
@@ -888,7 +438,7 @@ function toggleGoogleTranslateWidget() {
                      <string role="key" value="_storageName"></string>
                      <string value="simpsons_prevencion.jpeg"></string>
                      <string role="key" value="_userName"></string>
-                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\simpsons_prevencion.jpeg"></string>
+                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\simpsons_prevencion.jpeg"></string>
                      <string role="key" value="checksum"></string>
                      <string value="120a0dd5a970435dc354b90cff73c2a0"></string>
                      <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -917,7 +467,7 @@ function toggleGoogleTranslateWidget() {
               <string role="key" value="intlinks_to_anchors"></string>
               <dictionary></dictionary>
               <string role="key" value="nextImageId"></string>
-              <int value="13"></int>
+              <int value="15"></int>
               <string role="key" value="parentNode"></string>
               <reference key="8"></reference>
              </dictionary>
@@ -1080,7 +630,7 @@ function toggleGoogleTranslateWidget() {
                    <instance class="exe.engine.field.TextField">
                     <dictionary>
                      <string role="key" value="_id"></string>
-                     <int value="747"></int>
+                     <int value="770"></int>
                      <string role="key" value="_idevice"></string>
                      <none></none>
                      <string role="key" value="_instruc"></string>
@@ -1094,7 +644,7 @@ function toggleGoogleTranslateWidget() {
                     </dictionary>
                    </instance>
                    <string role="key" value="_id"></string>
-                   <unicode value="2_114_2.27"></unicode>
+                   <unicode value="2_114_2.30"></unicode>
                    <string role="key" value="_imageResource"></string>
                    <instance class="exe.engine.resource.Resource" reference="50">
                     <dictionary>
@@ -1105,7 +655,7 @@ function toggleGoogleTranslateWidget() {
                      <string role="key" value="_storageName"></string>
                      <string value="Copia_de_Grafico_Cuadro_Comparativo_Cuatro_Elementos_Tabla_Creativo_Multicolor_(1).png"></string>
                      <string role="key" value="_userName"></string>
-                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\Copia_de_Grafico_Cuadro_Comparativo_Cuatro_Elementos_Tabla_Creativo_Multicolor_(1).png"></string>
+                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\Copia_de_Grafico_Cuadro_Comparativo_Cuatro_Elementos_Tabla_Creativo_Multicolor_(1).png"></string>
                      <string role="key" value="checksum"></string>
                      <string value="52b191b156bb671cb3f02adb4e8c8e40"></string>
                      <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -2696,7 +2246,7 @@ for the other options."></unicode>
                             <instance class="exe.engine.field.TextField">
                              <dictionary>
                               <string role="key" value="_id"></string>
-                              <int value="752"></int>
+                              <int value="774"></int>
                               <string role="key" value="_idevice"></string>
                               <none></none>
                               <string role="key" value="_instruc"></string>
@@ -2710,7 +2260,7 @@ for the other options."></unicode>
                              </dictionary>
                             </instance>
                             <string role="key" value="_id"></string>
-                            <unicode value="5_117_2.12"></unicode>
+                            <unicode value="5_117_2.14"></unicode>
                             <string role="key" value="_imageResource"></string>
                             <instance class="exe.engine.resource.Resource" reference="42">
                              <dictionary>
@@ -2721,7 +2271,7 @@ for the other options."></unicode>
                               <string role="key" value="_storageName"></string>
                               <string value="o_lineal_flujo_pasos_a_seguir_con_iconos_flechas_multicolor__(Poster_(vertical))_(60  42 cm)_(1).png"></string>
                               <string role="key" value="_userName"></string>
-                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\o_lineal_flujo_pasos_a_seguir_con_iconos_flechas_multicolor__(Poster_(vertical))_(60  42 cm)_(1).png"></string>
+                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\o_lineal_flujo_pasos_a_seguir_con_iconos_flechas_multicolor__(Poster_(vertical))_(60  42 cm)_(1).png"></string>
                               <string role="key" value="checksum"></string>
                               <string value="b5f528d4a4bf3b9b65d27f4deee8ad63"></string>
                               <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -2750,7 +2300,7 @@ for the other options."></unicode>
                        <string role="key" value="intlinks_to_anchors"></string>
                        <dictionary></dictionary>
                        <string role="key" value="nextImageId"></string>
-                       <int value="13"></int>
+                       <int value="15"></int>
                        <string role="key" value="parentNode"></string>
                        <reference key="41"></reference>
                       </dictionary>
@@ -3185,7 +2735,7 @@ click on the 'Hide/Show' button below.&lt;/p&gt;"></unicode>
                </instance>
               </dictionary>
               <string role="key" value="nextImageId"></string>
-              <int value="29"></int>
+              <int value="31"></int>
               <string role="key" value="parentNode"></string>
               <reference key="49"></reference>
              </dictionary>
@@ -3358,7 +2908,7 @@ $(window).load(function(){
                    <instance class="exe.engine.field.TextField">
                     <dictionary>
                      <string role="key" value="_id"></string>
-                     <int value="743"></int>
+                     <int value="766"></int>
                      <string role="key" value="_idevice"></string>
                      <none></none>
                      <string role="key" value="_instruc"></string>
@@ -3372,7 +2922,7 @@ $(window).load(function(){
                     </dictionary>
                    </instance>
                    <string role="key" value="_id"></string>
-                   <unicode value="4_116_2.12"></unicode>
+                   <unicode value="4_116_2.14"></unicode>
                    <string role="key" value="_imageResource"></string>
                    <instance class="exe.engine.resource.Resource" reference="54">
                     <dictionary>
@@ -3383,7 +2933,7 @@ $(window).load(function(){
                      <string role="key" value="_storageName"></string>
                      <string value="14794-5768959-1024x576.jpg"></string>
                      <string role="key" value="_userName"></string>
-                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\14794-5768959-1024x576.jpg"></string>
+                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\14794-5768959-1024x576.jpg"></string>
                      <string role="key" value="checksum"></string>
                      <string value="a0b57ef78b8c9a02421030a8d0deba8d"></string>
                      <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -3412,7 +2962,7 @@ $(window).load(function(){
               <string role="key" value="intlinks_to_anchors"></string>
               <dictionary></dictionary>
               <string role="key" value="nextImageId"></string>
-              <int value="13"></int>
+              <int value="15"></int>
               <string role="key" value="parentNode"></string>
               <reference key="53"></reference>
              </dictionary>
@@ -3847,7 +3397,7 @@ $(window).load(function(){
                    <instance class="exe.engine.field.TextField">
                     <dictionary>
                      <string role="key" value="_id"></string>
-                     <int value="744"></int>
+                     <int value="767"></int>
                      <string role="key" value="_idevice"></string>
                      <none></none>
                      <string role="key" value="_instruc"></string>
@@ -3861,7 +3411,7 @@ $(window).load(function(){
                     </dictionary>
                    </instance>
                    <string role="key" value="_id"></string>
-                   <unicode value="26_114_2.12"></unicode>
+                   <unicode value="26_114_2.14"></unicode>
                    <string role="key" value="_imageResource"></string>
                    <instance class="exe.engine.resource.Resource" reference="132">
                     <dictionary>
@@ -3872,7 +3422,7 @@ $(window).load(function(){
                      <string role="key" value="_storageName"></string>
                      <string value="5_Points_Process_Puzzle_Infographic_Graph_(1).png"></string>
                      <string role="key" value="_userName"></string>
-                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\5_Points_Process_Puzzle_Infographic_Graph_(1).png"></string>
+                     <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\5_Points_Process_Puzzle_Infographic_Graph_(1).png"></string>
                      <string role="key" value="checksum"></string>
                      <string value="79131b018c207ac6dc26330eed1d870d"></string>
                      <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -4009,7 +3559,7 @@ $(window).load(function(){
                             <instance class="exe.engine.field.TextField">
                              <dictionary>
                               <string role="key" value="_id"></string>
-                              <int value="745"></int>
+                              <int value="768"></int>
                               <string role="key" value="_idevice"></string>
                               <none></none>
                               <string role="key" value="_instruc"></string>
@@ -4023,7 +3573,7 @@ $(window).load(function(){
                              </dictionary>
                             </instance>
                             <string role="key" value="_id"></string>
-                            <unicode value="8_120_2.12"></unicode>
+                            <unicode value="8_120_2.14"></unicode>
                             <string role="key" value="_imageResource"></string>
                             <instance class="exe.engine.resource.Resource" reference="65">
                              <dictionary>
@@ -4034,7 +3584,7 @@ $(window).load(function(){
                               <string role="key" value="_storageName"></string>
                               <string value="8e6e246f984770349a46c4a150b08aae.jpg"></string>
                               <string role="key" value="_userName"></string>
-                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\8e6e246f984770349a46c4a150b08aae.jpg"></string>
+                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\8e6e246f984770349a46c4a150b08aae.jpg"></string>
                               <string role="key" value="checksum"></string>
                               <string value="f4f8669c9a3ace6fc7b0ab0fef13a17d"></string>
                               <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -4063,7 +3613,7 @@ $(window).load(function(){
                        <string role="key" value="intlinks_to_anchors"></string>
                        <dictionary></dictionary>
                        <string role="key" value="nextImageId"></string>
-                       <int value="13"></int>
+                       <int value="15"></int>
                        <string role="key" value="parentNode"></string>
                        <reference key="64"></reference>
                       </dictionary>
@@ -5755,7 +5305,7 @@ estudiante a responder la pregunta."></unicode>
                             <instance class="exe.engine.field.TextField">
                              <dictionary>
                               <string role="key" value="_id"></string>
-                              <int value="749"></int>
+                              <int value="772"></int>
                               <string role="key" value="_idevice"></string>
                               <none></none>
                               <string role="key" value="_instruc"></string>
@@ -5769,7 +5319,7 @@ estudiante a responder la pregunta."></unicode>
                              </dictionary>
                             </instance>
                             <string role="key" value="_id"></string>
-                            <unicode value="16_128_2.12"></unicode>
+                            <unicode value="16_128_2.14"></unicode>
                             <string role="key" value="_imageResource"></string>
                             <instance class="exe.engine.resource.Resource" reference="114">
                              <dictionary>
@@ -5780,7 +5330,7 @@ estudiante a responder la pregunta."></unicode>
                               <string role="key" value="_storageName"></string>
                               <string value="higiene1.png"></string>
                               <string role="key" value="_userName"></string>
-                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\higiene1.png"></string>
+                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\higiene1.png"></string>
                               <string role="key" value="checksum"></string>
                               <string value="1f66c76900b7fbaa597377cf30ceeaf9"></string>
                               <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -6373,7 +5923,7 @@ estudiante a responder la pregunta."></unicode>
                                      <instance class="exe.engine.field.TextField">
                                       <dictionary>
                                        <string role="key" value="_id"></string>
-                                       <int value="750"></int>
+                                       <int value="773"></int>
                                        <string role="key" value="_idevice"></string>
                                        <none></none>
                                        <string role="key" value="_instruc"></string>
@@ -6387,7 +5937,7 @@ estudiante a responder la pregunta."></unicode>
                                       </dictionary>
                                      </instance>
                                      <string role="key" value="_id"></string>
-                                     <unicode value="21_133_2.13"></unicode>
+                                     <unicode value="21_133_2.15"></unicode>
                                      <string role="key" value="_imageResource"></string>
                                      <instance class="exe.engine.resource.Resource" reference="106">
                                       <dictionary>
@@ -6398,7 +5948,7 @@ estudiante a responder la pregunta."></unicode>
                                        <string role="key" value="_storageName"></string>
                                        <string value="laboratorios-analisis-clinicos.jpg"></string>
                                        <string role="key" value="_userName"></string>
-                                       <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\laboratorios-analisis-clinicos.jpg"></string>
+                                       <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\laboratorios-analisis-clinicos.jpg"></string>
                                        <string role="key" value="checksum"></string>
                                        <string value="1c6438c5e0c19e3b5de3af50b0c99c62"></string>
                                        <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -6427,7 +5977,7 @@ estudiante a responder la pregunta."></unicode>
                                 <string role="key" value="intlinks_to_anchors"></string>
                                 <dictionary></dictionary>
                                 <string role="key" value="nextImageId"></string>
-                                <int value="14"></int>
+                                <int value="16"></int>
                                 <string role="key" value="parentNode"></string>
                                 <reference key="105"></reference>
                                </dictionary>
@@ -6936,7 +6486,7 @@ in order to gain resolution of the situation."></unicode>
                         </instance>
                        </dictionary>
                        <string role="key" value="nextImageId"></string>
-                       <int value="13"></int>
+                       <int value="15"></int>
                        <string role="key" value="parentNode"></string>
                        <reference key="97"></reference>
                       </dictionary>
@@ -7422,7 +6972,7 @@ in order to gain resolution of the situation."></unicode>
                             <instance class="exe.engine.field.TextField">
                              <dictionary>
                               <string role="key" value="_id"></string>
-                              <int value="746"></int>
+                              <int value="769"></int>
                               <string role="key" value="_idevice"></string>
                               <none></none>
                               <string role="key" value="_instruc"></string>
@@ -7436,7 +6986,7 @@ in order to gain resolution of the situation."></unicode>
                              </dictionary>
                             </instance>
                             <string role="key" value="_id"></string>
-                            <unicode value="24_136_2.11"></unicode>
+                            <unicode value="24_136_2.13"></unicode>
                             <string role="key" value="_imageResource"></string>
                             <instance class="exe.engine.resource.Resource" reference="123">
                              <dictionary>
@@ -7447,7 +6997,7 @@ in order to gain resolution of the situation."></unicode>
                               <string role="key" value="_storageName"></string>
                               <string value="c0d41f748577951ff122b2b9db0e904f.jpg"></string>
                               <string role="key" value="_userName"></string>
-                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\c0d41f748577951ff122b2b9db0e904f.jpg"></string>
+                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\c0d41f748577951ff122b2b9db0e904f.jpg"></string>
                               <string role="key" value="checksum"></string>
                               <string value="466652b50a9609f6dc5b9a9b2bf3689d"></string>
                               <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -7476,7 +7026,7 @@ in order to gain resolution of the situation."></unicode>
                        <string role="key" value="intlinks_to_anchors"></string>
                        <dictionary></dictionary>
                        <string role="key" value="nextImageId"></string>
-                       <int value="12"></int>
+                       <int value="14"></int>
                        <string role="key" value="parentNode"></string>
                        <reference key="122"></reference>
                       </dictionary>
@@ -7730,7 +7280,7 @@ in order to gain resolution of the situation."></unicode>
                             <instance class="exe.engine.field.TextField">
                              <dictionary>
                               <string role="key" value="_id"></string>
-                              <int value="753"></int>
+                              <int value="775"></int>
                               <string role="key" value="_idevice"></string>
                               <none></none>
                               <string role="key" value="_instruc"></string>
@@ -7744,7 +7294,7 @@ in order to gain resolution of the situation."></unicode>
                              </dictionary>
                             </instance>
                             <string role="key" value="_id"></string>
-                            <unicode value="25_137_2.12"></unicode>
+                            <unicode value="25_137_2.14"></unicode>
                             <string role="key" value="_imageResource"></string>
                             <instance class="exe.engine.resource.Resource" reference="129">
                              <dictionary>
@@ -7755,7 +7305,7 @@ in order to gain resolution of the situation."></unicode>
                               <string role="key" value="_storageName"></string>
                               <string value="shin-chan-happiness.gif"></string>
                               <string role="key" value="_userName"></string>
-                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpgqq_ds\\shin-chan-happiness.gif"></string>
+                              <string value="c:\\users\\pepe\\appdata\\local\\temp\\tmpmxhzy3\\shin-chan-happiness.gif"></string>
                               <string role="key" value="checksum"></string>
                               <string value="47a7c0a474735d5b06176bd9f9b18a02"></string>
                               <string role="key" value="exe.engine.resource.Resource.persistenceVersion"></string>
@@ -7784,7 +7334,7 @@ in order to gain resolution of the situation."></unicode>
                        <string role="key" value="intlinks_to_anchors"></string>
                        <dictionary></dictionary>
                        <string role="key" value="nextImageId"></string>
-                       <int value="13"></int>
+                       <int value="15"></int>
                        <string role="key" value="parentNode"></string>
                        <reference key="128"></reference>
                       </dictionary>
@@ -7972,7 +7522,7 @@ in order to gain resolution of the situation."></unicode>
                </instance>
               </dictionary>
               <string role="key" value="nextImageId"></string>
-              <int value="13"></int>
+              <int value="15"></int>
               <string role="key" value="parentNode"></string>
               <reference key="59"></reference>
              </dictionary>
@@ -8404,7 +7954,7 @@ in order to gain resolution of the situation."></unicode>
   <string role="key" value="backgroundImgTile"></string>
   <bool value="0"></bool>
   <string role="key" value="currentNode"></string>
-  <reference key="128"></reference>
+  <reference key="4"></reference>
   <string role="key" value="dublinCore"></string>
   <instance class="exe.engine.package.DublinCore">
    <dictionary>
@@ -8443,7 +7993,7 @@ in order to gain resolution of the situation."></unicode>
   <string role="key" value="exe.engine.package.Package.persistenceVersion"></string>
   <int value="16"></int>
   <string role="key" value="exportMetadataType"></string>
-  <string value="LOMES"></string>
+  <unicode value="LOMES"></unicode>
   <string role="key" value="exportSource"></string>
   <bool value="1"></bool>
   <string role="key" value="footer"></string>
@@ -9499,7 +9049,7 @@ in order to gain resolution of the situation."></unicode>
   <string role="key" value="mxmlwidth"></string>
   <string value=""></string>
   <string role="key" value="release"></string>
-  <string value="2.8.1"></string>
+  <string value="2.9"></string>
   <string role="key" value="resources"></string>
   <dictionary>
    <string role="key" value="120a0dd5a970435dc354b90cff73c2a0"></string>
